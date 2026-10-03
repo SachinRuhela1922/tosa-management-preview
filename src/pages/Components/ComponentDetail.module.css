@@ -1,0 +1,16 @@
+.back { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 26px; padding: 8px 16px;
+  border: 1px solid var(--line-strong); border-radius: 999px; background: var(--card);
+  font-size: 13px; font-weight: 600; transition: transform .25s, background .25s; }
+.back svg { transform: rotate(180deg); }
+.back:hover { background: var(--surface); transform: translateX(-4px); }
+
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 70px; }
+.pBtn { display: flex; flex-direction: column; gap: 4px; padding: 18px 22px;
+  border: 1px solid var(--line-strong); border-radius: 18px; background: var(--card);
+  transition: transform .3s, border-color .3s, box-shadow .3s; }
+.pBtn small { font-size: 12px; color: var(--muted); }
+.pBtn strong { font-size: 16px; }
+.pBtn:hover { transform: translateY(-4px); border-color: var(--text); box-shadow: 0 14px 30px var(--shadow); }
+.right { text-align: right; }
+
+@media (max-width: 560px) { .pager { grid-template-columns: 1fr; } }

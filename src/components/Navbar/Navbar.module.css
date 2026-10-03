@@ -1,0 +1,481 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #000;
+  color: #fff;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 56px;
+  padding: 0 20px;
+}
+
+/* ---------- Desktop links ---------- */
+.links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.link:hover {
+  background: #222;
+}
+
+/* ---------- Right actions ---------- */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  min-width: 0;
+}
+.active {
+  background: #222;
+  font-weight: 600;
+}
+
+/* search ab ek trigger button hai, click par overlay khulta hai */
+.search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 240px;
+  height: 30px;
+  padding: 0 8px 0 12px;
+  border: 1px solid #333;
+  border-radius: 20px;
+  background: #111;
+  color: #aaa;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  min-width: 0;
+  transition: border-color 0.2s, color 0.2s;
+}
+.search span {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.search:hover {
+  border-color: #fff;
+  color: #fff;
+}
+
+.kbd {
+  padding: 2px 6px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background: #1a1a1a;
+  font: 600 10.5px ui-monospace, Menlo, monospace;
+  color: #999;
+  white-space: nowrap;
+}
+
+.iconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.iconBtn:hover {
+  background: #222;
+}
+
+.createBtn {
+  height: 32px;
+  padding: 0 14px;
+  border: none;
+  border-radius: 6px;
+  background: #fff;
+  color: #000;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.createBtn:hover {
+  opacity: 0.85;
+}
+
+/* ---------- Search overlay ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 14vh 16px 16px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  animation: fade 0.18s ease both;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  width: min(640px, 100%);
+  max-height: 70vh;
+  overflow: hidden;
+  border: 1px solid #333;
+  border-radius: 18px;
+  background: #0b0b0c;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(88, 166, 255, 0.08);
+  animation: pop 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.1) both;
+}
+
+.modalTop {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  height: 56px;
+  border-bottom: 1px solid #222;
+  color: #888;
+}
+.modalTop input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  font-size: 16px;
+}
+.modalTop input::placeholder {
+  color: #666;
+}
+.esc {
+  padding: 3px 8px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background: #151515;
+  color: #999;
+  font: 600 11px ui-monospace, Menlo, monospace;
+  cursor: pointer;
+}
+.esc:hover {
+  color: #fff;
+}
+
+.results {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: #333 transparent;
+}
+.groupTitle {
+  margin: 10px 10px 6px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #777;
+}
+.groupTitle:first-child {
+  margin-top: 4px;
+}
+
+.result {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.resultOn {
+  background: #1a1a1d;
+}
+.resIco {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
+  background: #111;
+  color: #888;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.resultOn .resIco {
+  color: #58a6ff;
+  border-color: rgba(88, 166, 255, 0.5);
+  background: rgba(88, 166, 255, 0.1);
+}
+.resText {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+.resText b {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
+}
+.resText small {
+  font-size: 12px;
+  color: #777;
+}
+.resEnter {
+  display: flex;
+  color: #666;
+}
+.mark {
+  padding: 0 2px;
+  border-radius: 4px;
+  background: rgba(88, 166, 255, 0.3);
+  color: inherit;
+}
+.empty {
+  margin: 0;
+  padding: 36px 10px;
+  text-align: center;
+  font-size: 13.5px;
+  color: #777;
+}
+
+.modalFoot {
+  display: flex;
+  gap: 18px;
+  padding: 10px 16px;
+  border-top: 1px solid #222;
+  font-size: 12px;
+  color: #777;
+}
+.modalFoot kbd {
+  margin-right: 4px;
+  padding: 1px 6px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  background: #151515;
+  font: 600 10.5px ui-monospace, Menlo, monospace;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes pop {
+  from { opacity: 0; transform: translateY(-12px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- Mobile ---------- */
+.menuBtn {
+  display: none;
+}
+
+.mobileMenu {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .menuBtn {
+    display: flex;
+  }
+
+  .links {
+    display: none;
+  }
+
+  .bar {
+    padding: 0 12px;
+    gap: 8px;
+  }
+
+  .search {
+    width: 160px;
+  }
+  .search .kbd {
+    display: none;
+  }
+
+  .mobileMenu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 12px;
+    background: #000;
+    border-top: 1px solid transparent;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+  }
+
+  .mobileMenu.open {
+    max-height: 420px;
+    padding: 12px;
+    border-top-color: #222;
+  }
+
+  .mobileSearch {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    height: 36px;
+    padding: 0 12px;
+    margin-bottom: 8px;
+    border: 1px solid #333;
+    border-radius: 6px;
+    background: #111;
+    color: #aaa;
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+
+  .mobileLink {
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 10px 8px;
+    border-radius: 6px;
+  }
+
+  .mobileLink:hover {
+    background: #222;
+  }
+
+  .overlay {
+    padding-top: 10vh;
+  }
+}
+
+/* Small phones: search navbar se hatake menu ke andar */
+@media (max-width: 560px) {
+  .search {
+    display: none;
+  }
+
+  .mobileSearch {
+    display: flex;
+  }
+  .modalFoot {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay, .modal { animation: none; }
+}
+
+/* ---------- Contribute overlay (GitHub icon) ---------- */
+.cModal { width: min(600px, 100%); }
+.cHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 22px 6px;
+}
+.cHead h2 { margin: 0 0 6px; font-size: 22px; font-weight: 700; letter-spacing: -0.4px; }
+.cHead p { margin: 0; font-size: 13.5px; color: #888; }
+
+.cGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  padding: 18px 22px 22px;
+}
+.cCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 18px;
+  border: 1px solid #2a2a2a;
+  border-radius: 16px;
+  background: #111;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.25s, border-color 0.25s, background 0.25s, box-shadow 0.25s;
+}
+.cCard:hover {
+  transform: translateY(-3px);
+  border-color: #58a6ff;
+  background: #14181f;
+  box-shadow: 0 16px 34px -18px rgba(88, 166, 255, 0.7);
+}
+.cCard b { font-size: 15px; font-weight: 650; }
+.cCard small { font-size: 12.5px; line-height: 1.5; color: #888; }
+.cIco {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(88, 166, 255, 0.4);
+  border-radius: 12px;
+  background: rgba(88, 166, 255, 0.1);
+  color: #58a6ff;
+  transition: transform 0.3s;
+}
+.cCard:hover .cIco { transform: rotate(-6deg) scale(1.08); }
+.cGo {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: flex;
+  color: #555;
+  transition: transform 0.25s, color 0.25s;
+}
+.cCard:hover .cGo { color: #58a6ff; transform: translateX(3px); }
+
+.cRepo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #999;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.cRepo:hover { color: #fff; }
+.cRepo svg { width: 16px; height: 16px; }
+
+@media (max-width: 560px) {
+  .cGrid { grid-template-columns: 1fr; }
+  .modalFoot { display: flex; }
+}

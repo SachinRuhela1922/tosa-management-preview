@@ -1,0 +1,481 @@
+.section {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 40px 20px 120px;
+}
+
+.heading {
+  margin: 0 0 8px;
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+}
+
+.heading span {
+  background: linear-gradient(90deg, #3fb950, #58a6ff, #bc8cff, #3fb950);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 6s linear infinite;
+}
+
+@keyframes shine {
+  to { background-position: 300% 0; }
+}
+
+.sub {
+  margin: 0 0 44px;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ---------- grid ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.terminal { grid-column: span 2; }
+.orbitCard { grid-row: span 2; }
+.stats { grid-row: span 2; }
+.heat { grid-column: span 2; }
+.tabs { grid-column: span 2; }
+.marquee { grid-column: 1 / -1; padding: 22px 0; }
+
+@media (max-width: 1100px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .orbitCard, .stats { grid-row: auto; }
+  .marquee { grid-column: span 2; }
+}
+
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; }
+  .terminal, .heat, .tabs, .marquee { grid-column: auto; }
+}
+
+/* ---------- common ---------- */
+.title { margin: 0 0 6px; font-size: 17px; font-weight: 600; }
+.muted { margin: 0; font-size: 13.5px; line-height: 1.5; color: var(--muted); }
+
+.rowBetween {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ---------- terminal ---------- */
+.dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.dots i {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #ff5f57;
+}
+.dots i:nth-child(2) { background: #febc2e; }
+.dots i:nth-child(3) { background: #28c840; }
+
+.dots span {
+  margin-left: 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.pre {
+  margin: 0;
+  min-height: 170px;
+  font-family: ui-monospace, "Cascadia Code", Menlo, monospace;
+  font-size: 13px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+.prompt { margin-right: 8px; color: #58a6ff; }
+.ok { color: #3fb950; }
+
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  margin-left: 3px;
+  vertical-align: middle;
+  background: var(--text);
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ---------- orbit ---------- */
+.orbit {
+  position: relative;
+  width: 100%;
+  max-width: 240px;
+  aspect-ratio: 1;
+  margin: 24px auto 0;
+}
+
+.core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  margin: -27px 0 0 -27px;
+  border-radius: 18px;
+  background: var(--text);
+  color: var(--bg);
+  animation: corePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes corePulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--glow); }
+  50% { box-shadow: 0 0 0 16px transparent; }
+}
+
+.ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--r) * 2);
+  height: calc(var(--r) * 2);
+  margin: calc(var(--r) * -1) 0 0 calc(var(--r) * -1);
+  border: 1px dashed var(--line-strong);
+  border-radius: 50%;
+  animation: spin var(--d) linear infinite;
+}
+
+.reverse { animation-direction: reverse; }
+.reverse .orbitDot { animation-direction: normal; }
+
+.orbitItem {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  transform: rotate(var(--a)) translateX(var(--r)) rotate(calc(var(--a) * -1));
+}
+
+.orbitDot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--surface);
+  animation: spin var(--d) linear infinite reverse;
+  transition: background 0.2s;
+}
+
+.orbitDot:hover { background: var(--surface-hover); }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* the item transform is set inline via vars, so spin the dot on its own axis */
+.orbitItem .orbitDot { transform-origin: center; }
+
+/* ---------- stats ---------- */
+.stats { display: flex; flex-direction: column; }
+
+.big {
+  margin: 4px 0 0;
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -1px;
+  font-variant-numeric: tabular-nums;
+}
+
+.spark {
+  width: 100%;
+  height: 60px;
+  margin: 8px 0;
+  overflow: visible;
+}
+
+.spark path {
+  fill: none;
+  stroke: #3fb950;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 2.5s ease forwards 0.4s;
+}
+
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+.divider {
+  height: 1px;
+  margin: 18px 0;
+  background: var(--line);
+}
+
+/* ---------- heatmap ---------- */
+.heatGrid {
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 4px;
+  margin-top: 22px;
+}
+
+.heatGrid i,
+.legend i {
+  aspect-ratio: 1;
+  min-width: 8px;
+  border-radius: 3px;
+  background: color-mix(in srgb, #3fb950 calc(var(--l) * 25%), var(--surface));
+}
+
+.heatGrid i {
+  animation: pop 0.5s ease both;
+  transition: transform 0.15s;
+}
+
+.heatGrid i:hover {
+  transform: scale(1.8);
+  outline: 1px solid var(--text);
+  z-index: 2;
+}
+
+@keyframes pop {
+  from { opacity: 0; transform: scale(0); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.legend i { width: 12px; height: 12px; aspect-ratio: auto; }
+
+/* ---------- notifications ---------- */
+.stack {
+  position: relative;
+  height: 130px;
+  margin-top: 22px;
+}
+
+.note {
+  position: absolute;
+  inset: 0 0 auto 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 16px;
+  background: var(--surface);
+  transform: translateY(calc(var(--p) * 18px)) scale(calc(1 - var(--p) * 0.06));
+  transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.note strong { display: block; font-size: 13.5px; }
+.note small { font-size: 12px; color: var(--muted); }
+
+.noteIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--text);
+  color: var(--bg);
+}
+
+/* ---------- tabs ---------- */
+.tabList {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.indicator {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc((100% - 8px) / 3);
+  border-radius: 999px;
+  background: var(--text);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.tabBtn {
+  position: relative;
+  padding: 8px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.tabActive { color: var(--bg); }
+
+.tabBody {
+  margin-top: 22px;
+  animation: fadeUp 0.45s ease both;
+}
+
+.tabBody p { margin: 14px 0; font-size: 14px; line-height: 1.6; color: var(--muted); }
+
+.tabBody ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+}
+
+.tabBody li { display: flex; align-items: center; gap: 8px; }
+.tabBody li svg { color: #3fb950; }
+
+.tabIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- glow CTA (rotating gradient border) ---------- */
+@property --angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.glow {
+  padding: 2px;
+  border-radius: 26px;
+  background: conic-gradient(
+    from var(--angle),
+    #3fb950, #58a6ff, #bc8cff, #ff7b72, #3fb950
+  );
+  animation: rotate 4s linear infinite;
+  transition: transform 0.35s, filter 0.3s;
+}
+
+.glow:hover {
+  transform: translateY(-6px) scale(1.02);
+  filter: brightness(1.15);
+}
+
+@keyframes rotate { to { --angle: 360deg; } }
+
+.glowInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 220px;
+  padding: 24px;
+  border-radius: 24px;
+  background: var(--card);
+  text-align: center;
+}
+
+.glowInner h3 { margin: 8px 0 6px; font-size: 20px; }
+.glowInner p { margin: 0 0 18px; font-size: 13.5px; color: var(--muted); }
+
+.spark2 {
+  font-size: 26px;
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { transform: scale(1) rotate(0); }
+  50% { transform: scale(1.3) rotate(20deg); }
+}
+
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 999px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: gap 0.2s, transform 0.2s;
+}
+
+.ctaBtn:hover { gap: 12px; transform: scale(1.05); }
+
+/* ---------- marquee ---------- */
+.mask {
+  display: grid;
+  gap: 14px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+.track {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+}
+
+.trackRev { animation-direction: reverse; }
+.mask:hover .track { animation-play-state: paused; }
+
+.tag {
+  padding: 10px 22px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.tag:hover {
+  background: var(--text);
+  color: var(--bg);
+  transform: scale(1.08);
+}
+
+@keyframes scroll { to { transform: translateX(-50%); } }

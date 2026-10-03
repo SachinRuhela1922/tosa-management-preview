@@ -1,0 +1,44 @@
+.section { max-width: 1100px; margin: 0 auto; padding: 100px 20px 120px; }
+
+.head { margin-bottom: 44px; text-align: center; }
+.badge { display: inline-block; padding: 6px 16px; border: 1px solid var(--border); border-radius: 999px; background: var(--card); font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+.head h2 { margin: 20px 0 18px; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; letter-spacing: -1px; }
+.head h2 span { background: linear-gradient(90deg, #f5a524, #ff7b72, #bc8cff, #f5a524); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 6s linear infinite; }
+@keyframes shine { to { background-position: 300% 0; } }
+
+.summary { display: inline-flex; align-items: center; gap: 10px; padding: 8px 20px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--card); }
+.summary strong { font-size: 18px; }
+.big { color: #f5a524; letter-spacing: 2px; }
+.summary small { color: var(--muted); }
+
+/* wall */
+.wall {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; height: 620px; overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 15%, #000 85%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 15%, #000 85%, transparent);
+}
+
+.col { overflow: hidden; }
+.track { animation: up var(--s) linear infinite; }
+.rev .track { animation-direction: reverse; }
+.col:hover .track { animation-play-state: paused; }
+@keyframes up { to { transform: translateY(-50%); } }
+
+.card {
+  margin: 0 0 16px; padding: 22px; border: 1px solid var(--line-strong); border-radius: 22px; background: var(--card);
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+.card:hover { transform: scale(1.03); border-color: var(--text); box-shadow: 0 16px 40px var(--shadow); }
+
+.stars { margin-bottom: 12px; font-size: 15px; letter-spacing: 2px; color: var(--line-strong); }
+.stars .on { color: #f5a524; }
+.card blockquote { margin: 0 0 18px; font-size: 14.5px; line-height: 1.65; }
+.card figcaption { display: flex; align-items: center; gap: 12px; }
+.card strong { display: block; font-size: 14px; }
+.card small { font-size: 12px; color: var(--muted); }
+
+.avatar { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, hsl(var(--h) 80% 60%), hsl(calc(var(--h) + 50) 80% 50%)); color: #fff; font-weight: 700; }
+
+@media (max-width: 900px) { .wall { grid-template-columns: repeat(2, 1fr); } .col:nth-child(3) { display: none; } }
+@media (max-width: 600px) { .wall { grid-template-columns: 1fr; height: 520px; } .hideSm { display: none; } }
+@media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; } }
