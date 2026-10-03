@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import styles from "./installation.module.css";
+import styles from "./Installation.module.css";
 
 /* ====== EDIT THESE: apni real package details yahan daalo ====== */
 const PKG = "tosa";

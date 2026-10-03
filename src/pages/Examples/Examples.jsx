@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import styles from "./examples.module.css";
+import styles from "./Examples.module.css";
 
 /* ---------- DATA (tumhare App.jsx + index.html se) ---------- */
 const COMPONENTS = [
