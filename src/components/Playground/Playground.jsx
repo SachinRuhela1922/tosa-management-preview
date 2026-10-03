@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Icon from "../Icon/Icon";
-import { items } from "./previews";
+import { items } from "./Previews";
 import styles from "./Playground.module.css";
 
 const Playground = () => {
