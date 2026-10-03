@@ -4,7 +4,7 @@ import { isAuthenticated } from "../../utils/auth";
 import styles from "./Profile.module.css";
 
 const API_URL =
-  import.meta.env.VITE_API_URL || "http://localhost:5000";
+  import.meta.env.VITE_API_URL || "https://tosa-management-backend.onrender.com";
 
 const Profile = () => {
   const navigate = useNavigate();

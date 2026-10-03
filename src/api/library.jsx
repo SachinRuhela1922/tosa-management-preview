@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 // Dashboard wala hi API. Production me .env me VITE_API_URL set kar do.
-export const API = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+export const API = import.meta.env.VITE_API_URL || "https://tosa-management-backend.onrender.com/api";
 
 async function request(path) {
   const res = await fetch(`${API}/${path}`);

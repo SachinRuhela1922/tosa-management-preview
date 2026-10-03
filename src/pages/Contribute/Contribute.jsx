@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Contribute.module.css";
 import { getProfile, getToken, clearSession } from "../../utils/auth";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API_URL = import.meta.env.VITE_API_URL || "https://tosa-management-backend.onrender.com";
 
 // =====================================================
 // Language -> contribute question types
